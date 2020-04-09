@@ -4,7 +4,7 @@
  * @Author: dangxing
  * @Date: 2020-04-09 17:15:25
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-04-09 17:51:58
+ * @LastEditTime: 2020-04-09 18:05:40
  -->
 <template>
   <section class="wrap">
@@ -45,7 +45,7 @@ export default {
   background: url(../../assets/bg.jpg);
   p{
     font-size: 16px;
-    color: #666;
+    color: #000;
     line-height: 40px;
     text-indent: 32px;
   }
