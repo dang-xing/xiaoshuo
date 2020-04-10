@@ -4,7 +4,7 @@
  * @Author: dangxing
  * @Date: 2020-04-09 11:14:25
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-04-10 17:38:49
+ * @LastEditTime: 2020-04-10 17:47:07
  -->
 <template>
   <section>
@@ -72,9 +72,7 @@ export default {
       })
     },
     goDetail(){
-      this.$router.push({
-        
-      })
+      
     },
     getBookDetail(){
       const id=this.$route.query.id;
