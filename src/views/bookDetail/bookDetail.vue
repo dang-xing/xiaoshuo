@@ -4,7 +4,7 @@
  * @Author: dangxing
  * @Date: 2020-04-09 11:14:25
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-04-09 16:56:52
+ * @LastEditTime: 2020-04-10 11:49:47
  -->
 <template>
   <section>
@@ -44,7 +44,7 @@
     <section class="footer-nav">
       <van-grid clickable :column-num="3" :border="false">
         <van-grid-item icon="home-o" text="缓存全本"/>
-        <van-grid-item icon="search" text="免费阅读"/>
+        <van-grid-item icon="search" @click="goDetail" text="免费阅读"/>
         <van-grid-item icon="search" text="加入书架"/>
       </van-grid>
     </section>
@@ -70,6 +70,9 @@ export default {
       this.$router.push({
         path:'/chapterList?id='+this.$route.query.id,
       })
+    },
+    goDetail(){
+
     },
     getBookDetail(){
       const id=this.$route.query.id;

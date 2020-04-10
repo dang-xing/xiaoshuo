@@ -4,7 +4,7 @@
  * @Author: dangxing
  * @Date: 2020-04-09 16:46:40
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-04-09 17:25:35
+ * @LastEditTime: 2020-04-10 09:40:29
  -->
 <template>
   <section>
@@ -13,7 +13,7 @@
       left-arrow
       @click-left="onClickLeft"
     />
-    <van-cell v-for="(item, index) in chapterData" @click="goWrap(item._id)" :key="index" :title="item.title" />
+    <van-cell v-for="(item, index) in chapterData" @click="goWrap(item._id,index)" :key="index" :title="item.title" />
   </section>
 
 </template>
@@ -35,9 +35,9 @@ export default {
     onClickLeft(){
       
     },
-    goWrap(id){
+    goWrap(id,index){
       this.$router.push({
-        path:`/bookWrap?bookId=${this.$route.query.id}&chapterId=${id}`
+        path:`/bookWrap?bookId=${this.$route.query.id}&chapterId=${id}&index=${index}`
       })
     },
     getChapterList(){
@@ -45,6 +45,7 @@ export default {
         console.log(res);
         if(res.data.ok){
           this.chapterData=res.data.chapterInfo.chapters;
+          sessionStorage.setItem('chapterData',JSON.stringify(this.chapterData));
         }
       })
     }

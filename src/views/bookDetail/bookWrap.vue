@@ -4,12 +4,17 @@
  * @Author: dangxing
  * @Date: 2020-04-09 17:15:25
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-04-09 18:05:40
+ * @LastEditTime: 2020-04-10 11:42:28
  -->
 <template>
-  <section class="wrap">
-     <van-cell :title="wrapInfo.title"/>
-    <p v-html="wrapInfo.body"></p>
+  <section class="bg">
+    <div class="title">{{titles}}</div>
+    <div class="box"></div>
+    <section class="wrap" v-for="(item, index) in wrapInfo" :key="index">
+      <h2>{{item.title}}</h2>
+      <p v-html="item.body"></p>
+    </section>
+    <van-button class="icon-btn" type="default" @click="bookMove">加载下一章</van-button>
   </section>
 </template>
 <script>
@@ -17,37 +22,82 @@ import {requestWrap} from '../../api/api.js'
 export default {
   data() {
     return {
-      wrapInfo:'',
+      wrapInfo:[],
+      index:this.$route.query.index,
+      titles:'',
     }
   },
   created() {
-    this.getWrap();
+    this.getWrap(this.$route.query.bookId,this.$route.query.chapterId);
   },
   methods: {
-    getWrap(){
-      requestWrap({bookId:this.$route.query.bookId,chapterId:this.$route.query.chapterId}).then((res)=>{
+    getWrap(bookId,chapterId){
+      requestWrap({bookId:bookId,chapterId:chapterId}).then((res)=>{
         console.log(res);
         if(res.data.ok){
-          this.wrapInfo=res.data.chapter;
-          this.wrapInfo.body=this.wrapInfo.body.replace(/。/g,'。</p><p>')
+          this.wrapInfo.push(res.data.chapter);
+          for(let i=0;i<this.wrapInfo.length;i++){
+             this.wrapInfo[i].body=this.wrapInfo[i].body.replace(/。/g,'。</p><p>')
+          }
+          this.titles=this.wrapInfo[this.index].title;
           console.log(this.wrapInfo.body)
         }
       })
-    }
+    },
+    bookMove(){
+      ++this.index;
+      localStorage.setItem('NowIndex',this.index);
+      const chapterData=JSON.parse(sessionStorage.getItem('chapterData'))
+      let chapterId=chapterData[this.index]._id;
+      this.getWrap(this.$route.query.bookId,chapterId)
+    },
   },
 }
 </script>
 <style lang="scss" scoped>
+.bg{
+  background: url(../../assets/bg.jpg);
+}
 .wrap{
   box-sizing: border-box;
   height:100%;
-  padding:0 15px;
-  background: url(../../assets/bg.jpg);
+  padding:0px 15px;
   p{
     font-size: 16px;
     color: #000;
     line-height: 40px;
     text-indent: 32px;
   }
+  h2{
+    margin:0 0 0 0;
+    padding:15px 0 0 0;
+    box-sizing: border-box;
+    height:40px;
+    font-size: 18px;
+    line-height: 40px;
+  }
+}
+.icon-btn{
+  background: none;
+  border:none;
+  color: #ffff;
+  width: 100%;
+  text-align: center;
+}
+.title{
+  width:100%;
+  height:40px;
+  background: url(../../assets/bg.jpg);
+  position: fixed;
+  top:0;
+  left:0;
+  font-size:14px;
+  line-height: 40px;
+  text-indent: 15px;
+  color:#666;
+}
+.box{
+  width: 100%;
+  height:30px;
 }
 </style>
