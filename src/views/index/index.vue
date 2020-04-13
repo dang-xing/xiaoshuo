@@ -4,7 +4,7 @@
  * @Author: dangxing
  * @Date: 2020-04-08 13:59:20
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-04-09 16:37:04
+ * @LastEditTime: 2020-04-13 15:07:18
  -->
 <template>
   <section>
@@ -12,6 +12,7 @@
       v-model="value"
       placeholder="请输入搜索关键词"
       shape="round"
+      @focus="goSearch"
     />
     <van-tabs v-model="active" swipeable animated :border="false" @click="TabClick" @change="TabClick">
       <van-tab title="男生">
@@ -69,7 +70,12 @@ export default {
           this.$toast.clear();
         }
       })
-    }
+    },
+    goSearch(){
+      this.$router.push({
+        path:'/search'
+      })
+    },
   },
   components:{
     bookList,

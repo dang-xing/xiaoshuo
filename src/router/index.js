@@ -4,7 +4,7 @@
  * @Author: dangxing
  * @Date: 2020-04-08 13:53:52
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-04-10 15:00:26
+ * @LastEditTime: 2020-04-13 15:04:39
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -32,6 +32,11 @@ Vue.use(VueRouter)
     path:'/bookWrap',
     name:'书籍内容',
     component:()=>import('../views/bookDetail/bookWrap')
+  },
+  {
+    path:'/search',
+    name:'书籍搜索',
+    component:()=>import('../views/search/searchList.vue')
   }
 ]
 
