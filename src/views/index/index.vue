@@ -14,15 +14,15 @@
       shape="round"
       @focus="goSearch"
     />
-    <van-tabs v-model="active" swipeable animated :border="false" @click="TabClick" @change="TabClick">
+    <van-tabs v-model="active" animated :border="false" @click="TabClick" @change="TabClick">
       <van-tab title="男生">
         <bookList :bookListData="bookListData" v-if="flag"></bookList>
       </van-tab>
       <van-tab title="女生">
-        <bookList :bookListData="bookListData"></bookList>
+        <bookList :bookListData="bookListData" v-if="flag"></bookList>
       </van-tab>
       <van-tab title="出版">
-        <bookList :bookListData="bookListData"></bookList>
+        <bookList :bookListData="bookListData" v-if="flag"></bookList>
       </van-tab>
     </van-tabs>
     <tabNav></tabNav>
@@ -63,6 +63,7 @@ export default {
       this.$toast.loading({
         message: '加载中...',
       });
+      this.flag=false;
       requestBookList({gender:type}).then((res)=>{
         if(res.data.ok){
           this.bookListData=res.data.data;
