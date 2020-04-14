@@ -4,7 +4,7 @@
  * @Author: dangxing
  * @Date: 2020-04-08 14:51:49
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-04-09 15:36:36
+ * @LastEditTime: 2020-04-14 11:27:07
  -->
 <template>
   <section>
@@ -121,8 +121,6 @@ export default {
       }
       this.everybodyData=this.bookListData.everybody_looks;
       }
-
-      console.log(this.bookListData);
     }, 500);
   },
   methods: {

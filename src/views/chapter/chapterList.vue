@@ -4,7 +4,7 @@
  * @Author: dangxing
  * @Date: 2020-04-09 16:46:40
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-04-10 09:40:29
+ * @LastEditTime: 2020-04-14 15:56:58
  -->
 <template>
   <section>
@@ -13,7 +13,15 @@
       left-arrow
       @click-left="onClickLeft"
     />
-    <van-cell v-for="(item, index) in chapterData" @click="goWrap(item._id,index)" :key="index" :title="item.title" />
+    <van-list
+      v-model="loading"
+      :finished="finished"
+      finished-text="没有更多了"
+      @load="onLoad"
+      :immediate-check="false"
+    >
+    <van-cell v-for="(item, index) in chapterListData" @click="goWrap(item._id,index)" :key="index" :title="item.title" />
+    </van-list>
   </section>
 
 </template>
@@ -24,8 +32,10 @@ export default {
     return {
       list: [],
       loading: false,
-      finished: true,
+      finished: false,
       chapterData:'',
+      chapterListData:[],
+      currentPage:1,
     }
   },
   created() {
@@ -40,15 +50,34 @@ export default {
         path:`/bookWrap?bookId=${this.$route.query.id}&chapterId=${id}&index=${index}`
       })
     },
+    onLoad(){
+        var arr=this.pagination(15,this.currentPage,this.chapterData)
+        for (let i = 0; i < arr.length; i++) {
+          this.chapterListData.push(arr[i]);
+        }
+        // 加载状态结束
+        this.currentPage++
+        this.loading = false;
+        // 数据全部加载完成
+        if (this.chapterListData.length == this.chapterData.length) {
+          this.finished = true;
+        }
+    },
     getChapterList(){
       requestChapterList({bookId:this.$route.query.id}).then((res)=>{
         console.log(res);
         if(res.data.ok){
           this.chapterData=res.data.chapterInfo.chapters;
+          this.onLoad();
           sessionStorage.setItem('chapterData',JSON.stringify(this.chapterData));
         }
       })
-    }
+    },
+    pagination(pageSize, currentPage, arr) {
+      var skipNum = (currentPage - 1) * pageSize;
+      var newArr = (skipNum + pageSize >= arr.length) ? arr.slice(skipNum, arr.length) : arr.slice(skipNum, skipNum + pageSize);
+      return newArr;
+    },
     
   },
 }

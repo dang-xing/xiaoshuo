@@ -4,15 +4,15 @@
  * @Author: dangxing
  * @Date: 2020-04-08 14:09:44
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-04-08 14:19:18
+ * @LastEditTime: 2020-04-14 15:30:35
  -->
 <template>
   <section>
     <van-tabbar v-model="active" active-color="#07c160" inactive-color="#000">
-      <van-tabbar-item icon="home-o">标签</van-tabbar-item>
-      <van-tabbar-item icon="search">标签</van-tabbar-item>
-      <van-tabbar-item icon="freinds-o">标签</van-tabbar-item>
-      <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
+      <van-tabbar-item class="iconfont icon-shujia">书架</van-tabbar-item>
+      <van-tabbar-item icon="qr-invalid">分类</van-tabbar-item>
+      <van-tabbar-item class="iconfont icon-shucheng-xiantiao">书城</van-tabbar-item>
+      <van-tabbar-item class="iconfont icon-wode">我的</van-tabbar-item>
     </van-tabbar>
   </section>
 </template>
