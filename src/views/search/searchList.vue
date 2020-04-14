@@ -4,7 +4,7 @@
  * @Author: dangxing
  * @Date: 2020-04-13 15:01:48
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-04-14 15:35:05
+ * @LastEditTime: 2020-04-14 17:18:31
  -->
 <template>
   <section>
@@ -207,7 +207,7 @@ export default {
 }
 .box-height{
   width:100%;
-  height:40px;
+  height:50px;
 }
 .box-line{
   width: 100%;
