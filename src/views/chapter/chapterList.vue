@@ -4,7 +4,7 @@
  * @Author: dangxing
  * @Date: 2020-04-09 16:46:40
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-04-14 15:56:58
+ * @LastEditTime: 2020-04-14 16:12:26
  -->
 <template>
   <section>
@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     onClickLeft(){
-      
+      this.$router.go(-1);
     },
     goWrap(id,index){
       this.$router.push({

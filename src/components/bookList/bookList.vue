@@ -4,7 +4,7 @@
  * @Author: dangxing
  * @Date: 2020-04-08 14:51:49
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-04-14 11:27:07
+ * @LastEditTime: 2020-04-14 16:18:51
  -->
 <template>
   <section>
@@ -100,7 +100,6 @@ export default {
     };
   },
   created() {
-    setTimeout(() => {
       if(this.bookListData.banner_list!=undefined){
         this.bannerList = this.bookListData.banner_list[0].book_config;
       this.bookNavData = this.bookListData.icon[0].book_config;
@@ -121,14 +120,13 @@ export default {
       }
       this.everybodyData=this.bookListData.everybody_looks;
       }
-    }, 500);
   },
   methods: {
     goDetail(id){
       this.$router.push({
         path:'/bookDetail?id='+id
       })
-    }
+    },
   },
 };
 </script>

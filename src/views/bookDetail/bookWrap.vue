@@ -4,7 +4,7 @@
  * @Author: dangxing
  * @Date: 2020-04-09 17:15:25
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-04-10 11:42:28
+ * @LastEditTime: 2020-04-14 16:10:16
  -->
 <template>
   <section class="bg">
@@ -25,6 +25,7 @@ export default {
       wrapInfo:[],
       index:this.$route.query.index,
       titles:'',
+      number:0,
     }
   },
   created() {
@@ -39,12 +40,13 @@ export default {
           for(let i=0;i<this.wrapInfo.length;i++){
              this.wrapInfo[i].body=this.wrapInfo[i].body.replace(/。/g,'。</p><p>')
           }
-          this.titles=this.wrapInfo[this.index].title;
-          console.log(this.wrapInfo.body)
+          console.log(this.wrapInfo.length);
+          this.titles=this.wrapInfo[this.number].title;          
         }
       })
     },
     bookMove(){
+      this.number++;
       ++this.index;
       localStorage.setItem('NowIndex',this.index);
       const chapterData=JSON.parse(sessionStorage.getItem('chapterData'))

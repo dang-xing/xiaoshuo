@@ -4,10 +4,20 @@
  * @Author: dangxing
  * @Date: 2020-04-09 11:14:25
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-04-10 17:47:07
+ * @LastEditTime: 2020-04-14 16:25:29
  -->
 <template>
   <section>
+  <van-nav-bar
+      left-text=""
+      left-arrow
+      @click-left="onClickLeft"
+      
+    >
+    <template #right>
+    <van-icon class="iconfont icon-fenxiang" style="font-size:20px" /> 
+  </template>
+    </van-nav-bar>
    <section class="main-body">
     <van-row class="boy-hot" v-if="bookInfo!=''">
         <van-col span="8">
@@ -73,6 +83,9 @@ export default {
     },
     goDetail(){
       
+    },
+    onClickLeft(){
+      this.$router.go(-1);
     },
     getBookDetail(){
       const id=this.$route.query.id;

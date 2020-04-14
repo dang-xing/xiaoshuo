@@ -4,7 +4,7 @@
  * @Author: dangxing
  * @Date: 2020-04-08 13:53:52
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-04-14 15:08:23
+ * @LastEditTime: 2020-04-14 16:26:08
  -->
 <template>
   <div id="app">
@@ -28,5 +28,8 @@ export default {
 }
 .van-grid-item__content{
   padding:8px 0 !important;
+}
+.van-nav-bar .van-icon{
+  color:#666 !important;
 }
 </style>
