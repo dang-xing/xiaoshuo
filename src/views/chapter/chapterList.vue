@@ -4,7 +4,7 @@
  * @Author: dangxing
  * @Date: 2020-04-09 16:46:40
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-04-14 16:12:26
+ * @LastEditTime: 2020-04-16 16:26:57
  -->
 <template>
   <section>
@@ -51,7 +51,7 @@ export default {
       })
     },
     onLoad(){
-        var arr=this.pagination(15,this.currentPage,this.chapterData)
+        var arr=this.pagination(30,this.currentPage,this.chapterData)
         for (let i = 0; i < arr.length; i++) {
           this.chapterListData.push(arr[i]);
         }
@@ -64,11 +64,17 @@ export default {
         }
     },
     getChapterList(){
+       this.$toast.loading({
+        message: '加载中...',
+      });
       requestChapterList({bookId:this.$route.query.id}).then((res)=>{
         console.log(res);
         if(res.data.ok){
           this.chapterData=res.data.chapterInfo.chapters;
-          this.onLoad();
+          if(this.chapterData!=''){
+            this.onLoad();
+            this.$toast.clear();
+          }
           sessionStorage.setItem('chapterData',JSON.stringify(this.chapterData));
         }
       })

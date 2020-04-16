@@ -4,7 +4,7 @@
  * @Author: dangxing
  * @Date: 2020-04-08 14:09:44
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-04-14 15:30:35
+ * @LastEditTime: 2020-04-16 16:36:23
  -->
 <template>
   <section>
@@ -20,7 +20,7 @@
 export default {
   data() {
     return {
-      active:0,
+      active:2,
     }
   },
 }

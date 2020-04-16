@@ -4,7 +4,7 @@
  * @Author: dangxing
  * @Date: 2020-04-08 13:53:52
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-04-14 16:31:51
+ * @LastEditTime: 2020-04-16 16:47:59
  -->
 <template>
   <div id="app">
@@ -14,7 +14,6 @@
 </template>
 <script>
 export default {
-
 }
 </script>
 <style lang="scss">
@@ -32,4 +31,5 @@ export default {
 .van-nav-bar .van-icon{
   color:#666 !important;
 }
+
 </style>

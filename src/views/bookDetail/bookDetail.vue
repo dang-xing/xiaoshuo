@@ -4,7 +4,7 @@
  * @Author: dangxing
  * @Date: 2020-04-09 11:14:25
  * @LastEditors: sueRimn
- * @LastEditTime: 2020-04-14 16:25:29
+ * @LastEditTime: 2020-04-16 16:35:24
  -->
 <template>
   <section>
@@ -69,11 +69,17 @@ export default {
     return {
       bookInfo:'',
       bookDataList:'',
+      id:'',
     }
   },
   created() {
     console.log(this.$route.query.id)
     this.getBookDetail();
+  },
+  watch: {
+    id(){
+      this.getBookDetail();
+    }
   },
   methods: {
     goChapter(){
@@ -81,8 +87,11 @@ export default {
         path:'/chapterList?id='+this.$route.query.id,
       })
     },
-    goDetail(){
-      
+    goDetail(id){
+      this.$router.push({
+         path:'/bookDetail?id='+id
+      })
+      this.id=this.$route.query.id;
     },
     onClickLeft(){
       this.$router.go(-1);
@@ -93,13 +102,10 @@ export default {
         if(res.data.ok){
           this.bookInfo=res.data;
           requestBookRecommend({catId:res.data.cat._id,bookId:this.$route.query.id}).then((res)=>{
-            console.log(res);
             if(res.data.ok){
               this.bookDataList=res.data.books;
-              console.log(this.bookDataList);
             }
           })
-          console.log(this.bookInfo);
         }
       })
     }
